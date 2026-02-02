@@ -130,7 +130,19 @@ public class CommonTutorialCallbacks : ScriptableObject
 
     public bool GameObjectIsSelected(string name)
     {
-        return Selection.activeObject != null && Selection.activeObject.name.Equals(name);
+        if (Selection.activeObject == null)
+        {
+            Criterion.globalLastKnownError = "No game object selected.";
+            return false;
+        }
+
+        if (!Selection.activeObject.name.Equals(name, System.StringComparison.OrdinalIgnoreCase))
+        {
+            Criterion.globalLastKnownError = $"Wrong game object selected. Currently \"{Selection.activeObject.name}\" is selected, but should be \"{name}\".";
+            return false;
+        }
+
+        return true;
     }
 
 
