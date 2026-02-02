@@ -187,6 +187,7 @@ namespace Unity.Tutorials.Core.Editor
             string[] lines = htmlText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
             var currentCodeBlock = "";
+            var currentGameObjectLinkText = "";
             foreach (string lineTmp in lines)
             {   
                 var line = lineTmp.Replace("&lt;", "<").Replace("&gt;", ">");
@@ -494,21 +495,7 @@ namespace Unity.Tutorials.Core.Editor
                     }
                     else if (gameObjectOn && strippedWord != "")
                     {
-                        var label = new GameObjectlinkLabel
-                        {
-                            text = strippedWord,
-                            tooltip = "Game Object: " + strippedWord
-                        };
-                        label.RegisterCallback<MouseUpEvent, string>(
-                            (evt, gameObjectName) =>
-                            {
-                                TutorialEditorUtils.HighlightGameObject(gameObjectName);
-                            },
-                            strippedWord
-                        );
-
-                        targetContainer.Add(label);
-                        elements.Add(label);
+                        currentGameObjectLinkText += strippedWord;
                     }
                     else if (docOn && strippedWord != "") //dumb but it will do the job :)
                     {
@@ -612,6 +599,27 @@ namespace Unity.Tutorials.Core.Editor
                     }
                     if (removeGameObject)
                     {
+                        if (!string.IsNullOrEmpty(currentGameObjectLinkText))
+                        {
+                            var finalText = currentGameObjectLinkText.Trim();
+                            var label = new GameObjectlinkLabel
+                            {
+                                text = finalText,
+                                tooltip = "Game Object: " + finalText
+                            };
+                            label.RegisterCallback<MouseUpEvent, string>(
+                                (evt, gameObjectName) =>
+                                {
+                                    TutorialEditorUtils.HighlightGameObject(gameObjectName);
+                                },
+                                finalText
+                            );
+
+                            targetContainer.Add(label);
+                            elements.Add(label);
+                            currentGameObjectLinkText = "";
+                        }
+
                         gameObjectOn = false;
                         if (nextWord == string.Empty)
                         {
@@ -641,6 +649,10 @@ namespace Unity.Tutorials.Core.Editor
                     if (currentCodeBlock != "" && codeOn)
                     {
                         currentCodeBlock+=" ";
+                    }
+                    if (currentGameObjectLinkText != "" && gameObjectOn)
+                    {
+                        currentGameObjectLinkText += " ";
                     }
 
                 }
