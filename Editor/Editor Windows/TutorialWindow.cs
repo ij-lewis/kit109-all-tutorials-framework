@@ -959,6 +959,7 @@ namespace Unity.Tutorials.Core.Editor
         void AddCallbacksToEvents()
         {
             Criterion.CriterionCompleted += OnCriterionCompleted;
+            Criterion.CriterionInvalidated += OnCriterionCompleted;
 
             // test for page completion state changes (rather than criteria completion/invalidation directly)
             // so that page completion state will be up-to-date
