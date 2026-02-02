@@ -426,6 +426,22 @@ namespace Unity.Tutorials.Core.Editor
                         HideElement(checkboxSkip);
                     }
 
+
+                    // Error UI handling
+                    var errorHeader = instructionElement.Q<VisualElement>("InstructionErrorHeader");
+                    var currentInstruction = instruction; // Fix closure capture
+                    if (errorHeader != null)
+                    {
+                        errorHeader.RegisterCallback<ClickEvent>(evt =>
+                        {
+                            UnityEngine.Debug.Log($"Error Header Clicked. Old state: {currentInstruction.ErrorExpanded}");
+                            currentInstruction.ErrorExpanded = !currentInstruction.ErrorExpanded;
+                            UpdateInstructionBox();
+                            UnityEngine.Debug.Log($"New state: {currentInstruction.ErrorExpanded}");
+                            evt.StopPropagation();
+                        });
+                    }
+
                     instructionsCount++;
                 }
 
@@ -620,9 +636,30 @@ namespace Unity.Tutorials.Core.Editor
                             HideElement(instructionElement.Q("InstructionUserCheckboxSkip"));
 
                         var eText = paragraph.ErrorTutorialText;
-                        var eTextElement = instructionElement.Q<Label>("InstructionErrorText");
-                        eTextElement.text = eText;
-                        eTextElement.visible = !string.IsNullOrEmpty(eText);
+                        var errorContainer = instructionElement.Q<VisualElement>("InstructionErrorContainer");
+                        var errorHeaderLabel = instructionElement.Q<Label>("InstructionErrorHeaderLabel");
+                        var errorDetailLabel = instructionElement.Q<Label>("InstructionErrorDetailLabel");
+
+                        if (!string.IsNullOrEmpty(eText))
+                        {
+                            ShowElement(errorContainer);
+                            if (paragraph.ErrorExpanded)
+                            {
+                                errorHeaderLabel.text = "Errors found: Click here to hide info"; // Localizable? Keeping hardcoded as per request for now
+                                ShowElement(errorDetailLabel);
+                                errorDetailLabel.text = eText;
+                            }
+                            else
+                            {
+                                errorHeaderLabel.text = "Errors found: click here to show more information";
+                                HideElement(errorDetailLabel);
+                            }
+                        }
+                        else
+                        {
+                            HideElement(errorContainer);
+                        }
+                        
                         instructionsCount++;
                     }
 

@@ -50,7 +50,13 @@
                             <ui:Toggle name="InstructionUserCheckboxSkip" class="pointer" text="I have skipped this step." />
 
                             <!-- If we find a common mistake, show text for that -->
-                            <ui:Label name="InstructionErrorText" />
+                            <ui:VisualElement name="InstructionErrorContainer" style="display: none;">
+                                <ui:VisualElement name="InstructionErrorHeader" class="code_multiline pointer" style="flex-direction: row; align-items: center;">
+                                    <ui:VisualElement class="image--instruction-checkmark-wrong" style="width: 16px; height: 16px; margin-right: 5px;" />
+                                    <ui:Label name="InstructionErrorHeaderLabel" text="Click here to show more information" style="-unity-font-style: bold;" />
+                                </ui:VisualElement>
+                                <ui:Label name="InstructionErrorDetailLabel" class="code_multiline" style="display: none; white-space: normal;" />
+                            </ui:VisualElement>
                         </ui:VisualElement>
 
                     </ui:VisualElement>

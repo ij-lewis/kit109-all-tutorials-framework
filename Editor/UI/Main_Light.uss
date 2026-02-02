@@ -669,3 +669,7 @@ Toggle Label {
     background-color:rgba(0,0,0,0.5);
     color:white;
 }
+
+.image--instruction-checkmark-wrong {
+    background-image: url('Images/Icons/CheckmarkWrong.png');
+}

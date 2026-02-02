@@ -149,6 +149,8 @@ namespace Unity.Tutorials.Core.Editor
         public bool UserIndicatedSkipped { get; set; }
         public int ChosenPollOption { get; set; } = -1;
 
+        public bool ErrorExpanded { get; set; }
+
         /// <summary>
         /// Is this paragraph completed? Applicable if this paragraph's type is Instruction.
         /// </summary>
@@ -176,58 +178,19 @@ namespace Unity.Tutorials.Core.Editor
                     bool allMandatory = m_CriteriaCompletion == CompletionType.CompletedWhenAllAreTrue;
                     bool result = allMandatory;
 
-                    m_PossibleErrors.Clear();
                     foreach (var typedCriterion in m_Criteria)
                     {
-                        string lastKnownError = null;
                         var criterion = typedCriterion.Criterion;
                         if (criterion != null)
                         {
-                            lastKnownError = criterion.lastKnownError;
-                            if (!criterion.Completed)
-                            {
-                                //if (lastKnownError != null)
-                                //{
-                                //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
-                                //    CriterionErrorPair error = new CriterionErrorPair();
-                                //    error.Criterion = typedCriterion;
-                                //    error.errorTutorialText = "1: " + lastKnownError;
-                                //    m_PossibleErrors.Add(error);
-                                //}
-                            }
-                            //if (lastKnownError != null)
-                            //{
-                            //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
-                            //    CriterionErrorPair error = new CriterionErrorPair();
-                            //    error.Criterion = typedCriterion;
-                            //    error.errorTutorialText = "2: " + lastKnownError;
-                            //    m_PossibleErrors.Add(error);
-                            //}
-
                             if (!allMandatory && criterion.Completed)
                             {
-                                //if (lastKnownError != null)
-                                //{
-                                //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
-                                //    CriterionErrorPair error = new CriterionErrorPair();
-                                //    error.Criterion = typedCriterion;
-                                //    error.errorTutorialText = "3: " + lastKnownError;
-                                //    m_PossibleErrors.Add(error);
-                                //}
                                 result = true;
                                 break;
                             }
 
                             if (allMandatory && !criterion.Completed)
                             {
-                                //if (lastKnownError != null)
-                                //{
-                                //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
-                                //    CriterionErrorPair error = new CriterionErrorPair();
-                                //    error.Criterion = typedCriterion;
-                                //    error.errorTutorialText = lastKnownError;
-                                //    m_PossibleErrors.Add(error);
-                                //}
                                 result = false;
                                 break;
                             }
