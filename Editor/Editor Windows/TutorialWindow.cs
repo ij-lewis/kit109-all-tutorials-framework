@@ -638,7 +638,7 @@ namespace Unity.Tutorials.Core.Editor
                         var eText = paragraph.ErrorTutorialText;
                         var errorContainer = instructionElement.Q<VisualElement>("InstructionErrorContainer");
                         var errorHeaderLabel = instructionElement.Q<Label>("InstructionErrorHeaderLabel");
-                        var errorDetailLabel = instructionElement.Q<Label>("InstructionErrorDetailLabel");
+                        var errorDetailLabel = instructionElement.Q<VisualElement>("InstructionErrorDetailLabel");
 
                         if (!string.IsNullOrEmpty(eText))
                         {
@@ -647,7 +647,7 @@ namespace Unity.Tutorials.Core.Editor
                             {
                                 errorHeaderLabel.text = "Errors found: Click here to hide info"; // Localizable? Keeping hardcoded as per request for now
                                 ShowElement(errorDetailLabel);
-                                errorDetailLabel.text = eText;
+                                RichTextToVisualElements(eText, errorDetailLabel);
                             }
                             else
                             {
