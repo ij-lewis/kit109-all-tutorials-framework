@@ -176,22 +176,62 @@ namespace Unity.Tutorials.Core.Editor
                     bool allMandatory = m_CriteriaCompletion == CompletionType.CompletedWhenAllAreTrue;
                     bool result = allMandatory;
 
+                    m_PossibleErrors.Clear();
                     foreach (var typedCriterion in m_Criteria)
                     {
+                        string lastKnownError = null;
                         var criterion = typedCriterion.Criterion;
                         if (criterion != null)
                         {
+                            lastKnownError = criterion.lastKnownError;
+                            if (!criterion.Completed)
+                            {
+                                //if (lastKnownError != null)
+                                //{
+                                //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
+                                //    CriterionErrorPair error = new CriterionErrorPair();
+                                //    error.Criterion = typedCriterion;
+                                //    error.errorTutorialText = "1: " + lastKnownError;
+                                //    m_PossibleErrors.Add(error);
+                                //}
+                            }
+                            //if (lastKnownError != null)
+                            //{
+                            //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
+                            //    CriterionErrorPair error = new CriterionErrorPair();
+                            //    error.Criterion = typedCriterion;
+                            //    error.errorTutorialText = "2: " + lastKnownError;
+                            //    m_PossibleErrors.Add(error);
+                            //}
+
                             if (!allMandatory && criterion.Completed)
                             {
+                                //if (lastKnownError != null)
+                                //{
+                                //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
+                                //    CriterionErrorPair error = new CriterionErrorPair();
+                                //    error.Criterion = typedCriterion;
+                                //    error.errorTutorialText = "3: " + lastKnownError;
+                                //    m_PossibleErrors.Add(error);
+                                //}
                                 result = true;
                                 break;
                             }
 
                             if (allMandatory && !criterion.Completed)
                             {
+                                //if (lastKnownError != null)
+                                //{
+                                //    Debug.Log("TutorialParagraph: " + lastKnownError + " " + this.Title);
+                                //    CriterionErrorPair error = new CriterionErrorPair();
+                                //    error.Criterion = typedCriterion;
+                                //    error.errorTutorialText = lastKnownError;
+                                //    m_PossibleErrors.Add(error);
+                                //}
                                 result = false;
                                 break;
                             }
+
                         }
                     }
 
@@ -204,18 +244,29 @@ namespace Unity.Tutorials.Core.Editor
         {
             get
             {
-                foreach (var possibleError in PossibleErrors)
+                foreach (var typedCriterion in m_Criteria)
                 {
-                        if (possibleError != null && possibleError.Criterion != null)
+                    if (typedCriterion.Criterion != null)
+                    {
+                        if (typedCriterion.Criterion.lastKnownError != null)
                         {
-                            var criterion = possibleError.Criterion.Criterion;
-                            if (criterion.Completed)
-                            {
-                                return possibleError.errorTutorialText;
-                            }
+                            return typedCriterion.Criterion.lastKnownError;
                         }
-                    
+                    }
                 }
+                //foreach (var possibleError in PossibleErrors)
+                //{
+                //    if (possibleError != null && possibleError.Criterion != null)
+                //    {
+                //        return possibleError.errorTutorialText;
+                //        var criterion = possibleError.Criterion.Criterion;
+                //        if (criterion.Completed)
+                //        {
+                //            return possibleError.errorTutorialText;
+                //        }
+                //    }
+                    
+                //}
                 return string.Empty;
             }
         }

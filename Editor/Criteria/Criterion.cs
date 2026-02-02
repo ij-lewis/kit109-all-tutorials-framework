@@ -23,6 +23,9 @@ namespace Unity.Tutorials.Core.Editor
 
         bool m_Completed;
 
+        public static string globalLastKnownError;
+        public string lastKnownError;
+
         /// <summary>
         /// Is the Criterion completed. Setting this raises CriterionCompleted/CriterionInvalidated.
         /// </summary>
@@ -69,7 +72,10 @@ namespace Unity.Tutorials.Core.Editor
         /// </summary>
         public virtual void UpdateCompletion()
         {
+            globalLastKnownError = null;
+            lastKnownError = null;
             Completed = EvaluateCompletion();
+            lastKnownError = globalLastKnownError;
         }
 
         /// <summary>
