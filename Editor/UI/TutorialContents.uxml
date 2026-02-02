@@ -1,0 +1,110 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement>
+        <Style src="Main_Light.uss" />
+
+        <ui:VisualElement name="TutorialPageContainer" class="container">
+
+            <!-- Tutorial step header -->
+            <ui:VisualElement name="Header" class="container--header">
+                <ui:VisualElement name="HeaderLabels" class="container--header-labels">
+                    <ui:Label text="" name="HeaderLabel" class="label--header" />
+                    <ui:Label text="" name="StepCount" class="label--step-count" />
+                    <ui:VisualElement name="Close" class="image--close" />
+                </ui:VisualElement>
+                <ui:VisualElement name="TutorialMediaContainer" class="container--tutorial-media">
+                    <ui:VisualElement name="TutorialMedia" class="tutorial-media"></ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:VisualElement name="TutorialContainer" class="container--tutorial">
+                <ui:ScrollView class="scrollview--tutorial">
+                    <!-- Tutorial title text -->
+                    <ui:Label text="" name="TutorialTitle" class="label--tutorial-title" />
+
+                    <!-- Tutorial description text -->
+                    <ui:VisualElement name="TutorialStepBox1" class="label--tutorial-step-description" />
+
+                    <!-- Tutorial instruction -->
+                    <ui:VisualElement name="InstructionContainer" class="container--instruction">
+
+                        <!-- New -->
+
+                        <!-- Instruction blue / green highlight  -->
+                        <ui:VisualElement name="InstructionHighlightNew" class="container--instruction-highlight">
+                            <ui:VisualElement name="InstructionHighlightBlue" class="container--instruction-highlight-blue" />
+                            <ui:VisualElement name="InstructionHighlightGreen" class="container--instruction-highlight-green" style="display: none" />
+                        </ui:VisualElement>
+
+                        <!-- Instruction arrow / checkmark icon  -->
+                        <ui:VisualElement name="InstructionIcon" class="container--instruction-icon">
+                            <ui:VisualElement name="InstructionArrow" class="image--instruction-arrow" />
+                            <ui:VisualElement name="InstructionCheckmark" class="image--instruction-checkmark" style="display: none" />
+                        </ui:VisualElement>
+
+                        <!-- Instruction texts -->
+                        <ui:VisualElement name="InstructionText" class="container--instruction-text">
+                            <ui:Label text="Enter Play mode" name="InstructionTitle" class="label--instruction-title" />
+                            <ui:VisualElement name="InstructionDescription" class="label--instruction-description" />
+
+                            <ui:Toggle name="InstructionUserCheckbox" class="pointer" text="I think I have completed this step." />
+                            <ui:Toggle name="InstructionUserCheckboxSkip" class="pointer" text="I have skipped this step." />
+
+                            <!-- If we find a common mistake, show text for that -->
+                            <ui:Label name="InstructionErrorText" />
+                        </ui:VisualElement>
+
+                    </ui:VisualElement>
+
+                  <!-- Tutorial instruction -->
+                  <ui:VisualElement name="PollContainer" class="container--instruction">
+
+                    <!-- New -->
+
+                    <!-- Instruction blue / green highlight  -->
+                    <ui:VisualElement name="InstructionHighlightNew" class="container--instruction-highlight">
+                      <ui:VisualElement name="InstructionHighlightBlue" class="container--instruction-highlight-blue" />
+                      <ui:VisualElement name="InstructionHighlightGreen" class="container--instruction-highlight-green" style="display: none" />
+                    </ui:VisualElement>
+
+                    <!-- Instruction arrow / checkmark icon  -->
+                    <ui:VisualElement name="InstructionIcon" class="container--instruction-icon">
+                      <ui:VisualElement name="InstructionArrow" class="image--instruction-arrow" />
+                      <ui:VisualElement name="InstructionCheckmark" class="image--instruction-checkmark" style="display: none" />
+                    </ui:VisualElement>
+
+                    <!-- Instruction texts -->
+                    <ui:VisualElement name="PollText" class="container--instruction-text">
+                      <ui:Label text="Enter Play mode" name="PollTitle" class="label--instruction-title" />
+                      <ui:VisualElement name="PollDescription" class="label--instruction-description" />
+
+                          <ui:Toggle name="PollOption1" class="poll-option wrong" text="Poll option 1." />
+                          <ui:Toggle name="PollOption2" class="poll-option correct" text="Poll option 2." />
+                          <ui:Toggle name="PollOption3" class="poll-option wrong" text="Poll option 3." />
+                          <ui:Toggle name="PollOption4" class="poll-option wrong" text="Poll option 4." />
+
+                    </ui:VisualElement>
+
+                  </ui:VisualElement>
+
+                  
+                </ui:ScrollView>
+            </ui:VisualElement>
+          
+          
+        </ui:VisualElement>
+
+        <!-- Empty container where tutorial step content and tutorial card list content is populated -->
+        <ui:VisualElement name="TutorialEmptyContents" class="container">
+        
+            <!-- This is used as container to tabs -->
+            <ui:VisualElement  name="TutorialListTabs" class="container tutorialTabs"></ui:VisualElement>
+            <ui:Label name="TutorialListTabTitle"/>
+            <ui:Button name="TutorialListTabBasePackage" text="(OPTIONAL) Download Base Package" />
+            <ui:Label name="TutorialListTabBasePackageInfo" text="Only download the Base Package if your scene is broken" />
+            <ui:ScrollView>
+                <ui:VisualElement name="TutorialEmptyCardContainer" class="container--card-list" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

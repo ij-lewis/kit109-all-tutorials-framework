@@ -1,0 +1,17 @@
+{
+  "name": "com.kit109.all-tutorials-framework",
+  "displayName": "Tutorial Framework",
+  "version": "1.0.0",
+  "unity": "2019.4",
+  "description": "This package is used to display interactive in-Editor tutorials in tutorial projects and project templates.",
+  "keywords": [
+    "tutorials"
+  ],
+  "dependencies": {
+    "com.unity.editorcoroutines": "1.0.0",
+    "com.unity.settings-manager": "1.0.3"
+  },
+  "upmCi": {
+    "footprint": "14d0b62ce2fdee92fb31e2619587797363a49025"
+  }
+}

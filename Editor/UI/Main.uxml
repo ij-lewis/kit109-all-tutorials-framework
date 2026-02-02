@@ -1,0 +1,97 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement>
+        <Style src="Main_Light.uss" />
+        
+        <!-- This is used as tab -->
+        <ui:Button  name="TutorialListTab" class="button--tutorial-action pointer"></ui:Button>
+
+        <!-- This is used as container to tabs -->
+        <ui:ScrollView name="TutorialListScrollView" class="scrollview--tutorial-list"></ui:ScrollView>
+
+        <!-- This is the card element -->
+        <ui:VisualElement name="TutorialsContainer" class="container">
+
+            <!-- Tutorial Card -->
+            <ui:VisualElement name="CardContainer" class="container--card pointer">
+                <ui:VisualElement name="Card" class="card">
+                    <ui:VisualElement name="TutorialImageContainer" class="container--tutorial-icon">
+                        <ui:VisualElement name="TutorialImage" class="image--tutorial-icon">
+                            <ui:VisualElement name="TutorialCheckmark" class="icon--tutorial-checkmark" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CardTextContainer" class="container--card-text">
+                        <ui:Label text="Editor UI" name="TutorialName" class="label--tutorial-name" />
+                        <ui:Label text="Make a simple change and playtest your game." name="TutorialDescription" class="label--tutorial-description" />
+                        <ui:Label text="COMPLETED" name="CompletionStatus" class="label--completed" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Link Card -->
+            <ui:VisualElement name="LinkCardContainer" class="container--card pointer">
+                <ui:VisualElement name="Card" class="card card--link">
+                    <ui:VisualElement name="TutorialImageContainer" class="container--tutorial-icon">
+                        <ui:VisualElement name="TutorialImage" class="image--tutorial-icon">
+                            <ui:VisualElement name="TutorialCheckmark" class="icon--tutorial-checkmark" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="CardTextContainer" class="container--card-text">
+                        <ui:Label text="Editor UI" name="TutorialName" class="label--tutorial-name" />
+                        <ui:Label text="Make a simple change and playtest your game." name="TutorialDescription" class="label--tutorial-description" />
+                        <ui:Label text="COMPLETED" name="CompletionStatus" class="label--completed" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+        <!-- Tutorial step actions -->
+        <ui:VisualElement name="TutorialActions" class="container--tutorial-actions">
+                <ui:Button text="Previous" name="PreviousButton" class="button--tutorial-action pointer">
+                    <ui:VisualElement name="PreviousButtonBase" class="button-background--tutorial-action">
+                    </ui:VisualElement>
+                </ui:Button>
+                <ui:Button text="Next" name="NextButton" class="button--tutorial-action pointer">
+                    <ui:VisualElement name="NextButtonBase" class="button-background--tutorial-action">
+                    </ui:VisualElement>    
+                </ui:Button>
+        </ui:VisualElement>
+
+        <!-- Tutorial header -->
+        <ui:VisualElement name="TitleHeader" class="container--header-large">
+            <ui:Label text="In-Editor Tutorials" name="TitleLabel" class="label--header label--header-large" />
+            <ui:Label text="" name="ContextLabel" class="label--header-subtitle" />
+
+            <ui:VisualElement name="HeaderButtons" class="container--header-labels">
+                <ui:Button text="Export HTML Version" name="ExportButton" class="button--header" />
+                <ui:Button text="Popout" name="UndockButton" class="button--header" />
+                <ui:VisualElement name="Close" class="image--close" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+        <!-- Button displayed at the end of each tutorial to start next tutorial -->
+        <ui:Button name="LinkButton" class="button--next-tutorial pointer" />
+
+
+        <!-- new! -->
+        
+            <!-- Update Message -->
+            <ui:VisualElement name="UpdateMessage" class="container--update-message">
+                <ui:Label text="Tutorial System Update Available" name="Heading" class="heading bold" />
+                <ui:Label text="An update is available. Downloading the update won't delete your progress, and contains bugfixes and new features." />
+                <ui:Button name="Download" text="Download Update" />
+            </ui:VisualElement>
+
+            <!-- Name form  -->
+            <ui:VisualElement name="SaveNameForm" class="container--save-name-formmessage">
+                <ui:Label text="Enter Student ID and Name" name="Heading" class="heading bold" />
+                <ui:Label text="To track your progress, please enter your StudentID and UTAS username below. If this data hasn't been entered before, we've tried to guess your username by grabbing the username of this computer." />
+                <ui:TextField name="StudentID" label="Student ID:" />
+                <ui:TextField name="Username" label="Username:"/>
+                <ui:Button name="Save" text="Save" />
+            </ui:VisualElement>
+
+      
+    </ui:VisualElement>
+</ui:UXML>
