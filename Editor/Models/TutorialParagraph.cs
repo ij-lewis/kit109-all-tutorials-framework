@@ -186,6 +186,11 @@ namespace Unity.Tutorials.Core.Editor
                             if (!allMandatory && criterion.Completed)
                             {
                                 result = true;
+                                foreach (var typedCriterion2 in m_Criteria)
+                                {
+                                    if (typedCriterion2.Criterion) typedCriterion2.Criterion.lastKnownError = string.Empty;
+                                }
+
                                 break;
                             }
 
