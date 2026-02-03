@@ -1,7 +1,7 @@
 {
   "name": "com.kit109.all-tutorials-framework",
-  "displayName": "Tutorial Framework",
-  "version": "1.0.0",
+  "displayName": "KIT109 Tutorial Framework",
+  "version": "1.0.1",
   "unity": "2019.4",
   "description": "This package is used to display interactive in-Editor tutorials in tutorial projects and project templates.",
   "keywords": [
