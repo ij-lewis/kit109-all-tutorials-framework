@@ -25,6 +25,7 @@ namespace Unity.Tutorials.Core.Editor
 
         public static string globalLastKnownError;
         public string lastKnownError;
+        public string previousError;
 
         /// <summary>
         /// Is the Criterion completed. Setting this raises CriterionCompleted/CriterionInvalidated.
@@ -34,8 +35,12 @@ namespace Unity.Tutorials.Core.Editor
             get { return m_Completed; }
             protected set
             {
-                if (value == m_Completed)
-                    return;
+                if (value == m_Completed) return;
+                //{
+                //    if (m_Completed) return;
+
+                //    if (!m_Completed && (lastKnownError == previousError)) return;
+                //}
 
                 m_Completed = value;
                 if (m_Completed)
@@ -72,10 +77,16 @@ namespace Unity.Tutorials.Core.Editor
         /// </summary>
         public virtual void UpdateCompletion()
         {
+            var previousLastKnownError = lastKnownError;
             globalLastKnownError = null;
             lastKnownError = null;
             Completed = EvaluateCompletion();
             lastKnownError = globalLastKnownError;
+
+            if (!Completed && lastKnownError != previousLastKnownError)
+            {
+                CriterionInvalidated?.Invoke(this);
+            }
         }
 
         /// <summary>
