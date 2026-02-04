@@ -239,7 +239,7 @@ namespace Unity.Tutorials.Core.Editor
             if (m_PrefabInstance == 0)
                 return false;
 
-            var prefabObject = EditorUtility.InstanceIDToObject(m_PrefabInstance);
+            var prefabObject = EditorUtility.EntityIdToObject(m_PrefabInstance); // EditorUtility.InstanceIDToObject(m_PrefabInstance); //
             if (prefabObject == null)
             {
                 m_ExistingPrefabInstances.Remove(m_PrefabInstance);
