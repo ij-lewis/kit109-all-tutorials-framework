@@ -645,13 +645,13 @@ namespace Unity.Tutorials.Core.Editor
                             ShowElement(errorContainer);
                             if (paragraph.ErrorExpanded)
                             {
-                                errorHeaderLabel.text = "Errors found: Click here to hide info"; // Localizable? Keeping hardcoded as per request for now
+                                errorHeaderLabel.text = "Step not complete: Click here to hide info"; // Localizable? Keeping hardcoded as per request for now
                                 ShowElement(errorDetailLabel);
                                 RichTextToVisualElements(eText, errorDetailLabel);
                             }
                             else
                             {
-                                errorHeaderLabel.text = "Errors found: click here to show more information";
+                                errorHeaderLabel.text = "Step not complete: click here to show more information";
                                 HideElement(errorDetailLabel);
                             }
                         }
