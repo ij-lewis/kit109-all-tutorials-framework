@@ -24,7 +24,9 @@ namespace Unity.Tutorials.Core.Editor
         bool m_Completed;
 
         public static string globalLastKnownError;
+        [HideInInspector]
         public string lastKnownError;
+        [HideInInspector]
         public string previousError;
 
         /// <summary>
