@@ -156,13 +156,23 @@ public class CommonTutorialCallbacks : ScriptableObject
     }
 
     static List<GameObject> tmpList = new List<GameObject>(10);
+    public static GameObject FindGameObject(string name)
+    {
+        var all = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+        foreach (var go in all)
+        {
+            if (go.name.Equals(name, System.StringComparison.OrdinalIgnoreCase)) return go;
+        }
+        return null;
+    }
+
     public static List<GameObject> GameObjectsStartingWith(string name)
     {
         tmpList.Clear();
         var all = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
         for (int i = 0; i < all.Length; i++)
         {
-            if (all[i].name.StartsWith(name))
+            if (all[i].name.StartsWith(name, System.StringComparison.OrdinalIgnoreCase))
             {
                 tmpList.Add(all[i]);
             }
@@ -176,7 +186,7 @@ public class CommonTutorialCallbacks : ScriptableObject
         var all = GameObject.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
         for (int i = 0; i < all.Length; i++)
         {
-            if (all[i].name.Contains(name))
+            if (all[i].name.IndexOf(name, System.StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 tmpList.Add(all[i]);
             }
@@ -200,7 +210,7 @@ public class CommonTutorialCallbacks : ScriptableObject
 
     public static bool GameObjectOnLayer(string name, int layer)
     {
-        var go = GameObject.Find(name);
+        var go = FindGameObject(name);
         if (go == null) return false;
 
         return go.layer == layer;
@@ -216,21 +226,21 @@ public class CommonTutorialCallbacks : ScriptableObject
 
     public static bool GameObjectContainsScriptByName(string script, string name) //for use when script doesnt exist in base
     {
-        var go = GameObject.Find(name);
+        var go = FindGameObject(name);
         if (go == null) return false;
 
         return go.GetComponent(script) != null;
     }
     public static bool GameObjectContainsScript<T>(string name)
     {
-        var go = GameObject.Find(name);
+        var go = FindGameObject(name);
         if (go == null) return false;
 
         return go.GetComponent<T>() != null;
     }
     public static Behaviour GameObjectComponentByName(string script, string name) //for use when script doesnt exist in base
     {
-        var go = GameObject.Find(name);
+        var go = FindGameObject(name);
         if (go == null) return default;
 
         var attached = go.GetComponent(script);
@@ -240,7 +250,7 @@ public class CommonTutorialCallbacks : ScriptableObject
     }
     public static T GameObjectComponent<T>(string name) where T : Component
     {
-        var go = GameObject.Find(name);
+        var go = FindGameObject(name);
         if (go == null) return default(T);
 
         var result = go.GetComponent<T>();
@@ -254,7 +264,7 @@ public class CommonTutorialCallbacks : ScriptableObject
 
         foreach (var comp in comps)
         {
-            if (comp.gameObject.name.Equals(goName)) return comp;
+            if (comp.gameObject.name.Equals(goName, System.StringComparison.OrdinalIgnoreCase)) return comp;
         }
 
         return default(T);
@@ -266,7 +276,7 @@ public class CommonTutorialCallbacks : ScriptableObject
 
         foreach (var comp in comps)
         {
-            if (comp.gameObject.name.Equals(goName)) return comp.gameObject;
+            if (comp.gameObject.name.Equals(goName, System.StringComparison.OrdinalIgnoreCase)) return comp.gameObject;
         }
 
         return null;
