@@ -525,6 +525,7 @@ ParseErrorLabel {
 InlineCodeLabel {
     font-size:12px;
     background-color:#ccc;
+    color: #111;
     padding-left:2px;
     padding-right:0px;
     padding-top:3px;
@@ -552,10 +553,12 @@ CodeLabel TextField TextInput {
     
     padding:4px;
     border-width:0px;
+    color: #111;
 }
 CodeLabel {
     background-color:rgba(240,240,240,143);
     border-color:rgba(160,160,160,255);
+    color: #111;
     border-width:1px;
     border-radius:3px;
 }
